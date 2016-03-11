@@ -1,0 +1,20 @@
+a.btn.btn-default(ui-sref="list") 文章列表
+hr
+div(ng-controller="PostsCtrl")
+  h1 编写文章
+  form.form-horizontal(ng-submit="save(post)")
+    .form-group
+      .col-sm-2
+        label.control-label 标题
+      .col-sm-10
+        input.form-control(type="text", placeholder="请输入标题", ng-model="post.title")
+    .form-group
+      .col-sm-2
+        label.control-label 内容
+      .col-sm-10
+        textarea.form-control(rows="15", placeholder="请输入内容", ng-model="post.content")
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        button.btn.btn-default(type="submit") 确认并提交
+  .well
+    | 预览
