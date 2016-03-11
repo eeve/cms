@@ -5,25 +5,40 @@ import 'angular-ui-router';
 
 import './js/AppControllers';
 import './js/AppServices';
+import './js/AppFilters';
 
-var App = angular.module('App',[
+angular.module('app.dashboard',[
   'ui.router',
-  'AppCtrls',
-  'AppServices'
-]);
+  'app.controllers',
+  'app.services',
+  'app.filters'
+])
 
-App.config(function($stateProvider, $urlRouterProvider){
+  .run(function($rootScope, $state, $stateParams){
+    // 方便获得当前状态的方法，绑到根作用域
+    $rootScope.$state = $state;
+    $rootScope.$stateParams = $stateParams;
+  })
 
-  $stateProvider
-    .state('write', {
-      url:'/write',
-      templateUrl: 'write.html'
-    })
-    .state('list', {
-      url:'/list',
-      templateUrl: 'list.html'
-    });
+  .config(function($stateProvider, $urlRouterProvider){
+    $stateProvider
+      .state('posts', {
+        url:'/posts',
+        templateUrl: 'posts.html'
+      })
+      .state('posts.write', {
+        url:'/write',
+        templateUrl: 'write.html'
+      })
+      .state('posts.list', {
+        url:'/list',
+        templateUrl: 'list.html'
+      })
+      .state('posts.detail', {
+        url:'/detail/:post_id',
+        templateUrl: 'detail.html'
+      });
 
-  $urlRouterProvider.otherwise('/list');
-
-});
+    $urlRouterProvider.otherwise('/posts');
+  })
+;

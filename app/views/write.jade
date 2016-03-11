@@ -1,7 +1,6 @@
-a.btn.btn-default(ui-sref="list") 文章列表
+h1 编写文章
 hr
-div(ng-controller="PostsCtrl")
-  h1 编写文章
+div(ng-controller="PostsController")
   form.form-horizontal(ng-submit="save(post)")
     .form-group
       .col-sm-2
@@ -17,4 +16,4 @@ div(ng-controller="PostsCtrl")
       .col-sm-offset-2.col-sm-10
         button.btn.btn-default(type="submit") 确认并提交
   .well
-    | 预览
+      | 预览

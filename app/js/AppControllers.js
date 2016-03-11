@@ -1,21 +1,33 @@
 import angular from 'angular';
 
-angular.module('AppCtrls',[])
+angular.module('app.controllers',[])
 
   //文章
-  .controller('PostsCtrl',function($scope, $state, Post){
+  .controller('PostsController',function($scope, $state, Post){
 
     $scope.posts = Post.all();
 
-    var createPost = function(post){
-      if(post){
-        Post.save(post);
-      }
-    }
-
     $scope.save = function(post){
-      createPost(post);
-      $state.go('list');
-    }
+      if(!post) return;
+      Post.save(post);
+      $state.go('posts.list');
+    };
 
-  });
+    $scope.delete = function(index){
+      if(!confirm('确定删除?')){
+        return;
+      }
+      $scope.posts.splice(index,1);
+      Post.saveAll($scope.posts);
+    };
+
+  })
+
+  .controller('PostDetailCtrl', function($scope, Post){
+    var index = $scope.$stateParams.post_id;
+    if(index){
+      $scope.post = Post.all()[index];
+    }
+  })
+
+;

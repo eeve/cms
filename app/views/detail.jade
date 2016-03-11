@@ -1,0 +1,7 @@
+div(ng-controller="PostDetailCtrl")
+  h1 {{post.title}}
+  hr
+  .row
+    .col-sm-12.col-md-12
+      img.media-object(ng-src="{{post.image}}", width="80")
+      pre(ng-bind-html="post.content | to_trust")
