@@ -1,7 +1,9 @@
-ul.nav.nav-pills
+ul.nav.nav-tabs
   li(role='presentation', ui-sref-active="active")
-    a(ui-sref=".list") 所有
+    a(ui-sref=".list")
+      i.glyphicon.glyphicon-list  所有
   li(role='presentation', ui-sref-active="active")
-    a(ui-sref=".write") 写一篇
+    a(ui-sref=".write")
+     i.glyphicon.glyphicon-pencil  写一篇
 
 div(ui-view="")

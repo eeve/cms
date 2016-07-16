@@ -39,6 +39,6 @@ angular.module('app.dashboard',[
         templateUrl: 'detail.html'
       });
 
-    $urlRouterProvider.otherwise('/posts');
+    $urlRouterProvider.otherwise('/posts/list');
   })
 ;
