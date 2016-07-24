@@ -3,9 +3,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 import angular from 'angular';
 import 'angular-ui-router';
 
-import './js/AppControllers';
-import './js/AppServices';
-import './js/AppFilters';
+import './js/controller';
+import './js/service';
+import './js/filter';
 
 angular.module('app.dashboard',[
   'ui.router',
