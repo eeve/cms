@@ -20,7 +20,7 @@
     "bootstrap": "^3.3.6",
     "es6-promise": "^3.1.2",
     "es6-shim": "^0.33.13",
-    "jquery": "^2.2.1",
+    "jquery": "^3.0.0",
     "jquery-validation": "^1.15.0",
     "md5": "^2.0.0",
     "reflect-metadata": "^0.1.2",
