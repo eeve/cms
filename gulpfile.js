@@ -135,6 +135,12 @@ function makeConf() {
       ['templates','styles','images','copy','webpack'], 'watch', cb);
   });
 
+  // 构建任务
+  gulp.task('prod', function (cb) {
+    runSequence('clean',
+      ['templates','styles','images','copy','webpack'], cb);
+  })
+
   gulp.task('tarball', function () {
     return gulp.src('dist/**/*')
       .pipe($.zip('archive.zip'))

@@ -3,7 +3,7 @@ import angular from 'angular';
 angular.module('app.controllers',[])
 
   //文章
-  .controller('PostsController',function($scope, $state, Post){
+  .controller('PostsController',['$scope', '$state', 'Post', function($scope, $state, Post){
 
     $scope.posts = Post.all();
 
@@ -21,13 +21,13 @@ angular.module('app.controllers',[])
       Post.saveAll($scope.posts);
     };
 
-  })
+  }])
 
-  .controller('PostDetailCtrl', function($scope, Post){
+  .controller('PostDetailCtrl', ['$scope', 'Post', function($scope, Post){
     var index = $scope.$stateParams.post_id;
     if(index){
       $scope.post = Post.all()[index];
     }
-  })
+  }])
 
 ;

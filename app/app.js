@@ -14,13 +14,13 @@ angular.module('app.dashboard',[
   'app.filters'
 ])
 
-  .run(function($rootScope, $state, $stateParams){
+  .run(['$rootScope', '$state', '$stateParams', function($rootScope, $state, $stateParams){
     // 方便获得当前状态的方法，绑到根作用域
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
-  })
+  }])
 
-  .config(function($stateProvider, $urlRouterProvider){
+  .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
     $stateProvider
       .state('posts', {
         url:'/posts',
@@ -40,5 +40,5 @@ angular.module('app.dashboard',[
       });
 
     $urlRouterProvider.otherwise('/posts/list');
-  })
+  }])
 ;

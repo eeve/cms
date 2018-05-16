@@ -36,26 +36,38 @@ var assetsLoaders = [
   { test: /\.html$/, loader: 'html' }
 ];
 
+var defaultPlugins = [
+  definePlugin,
+  //providePlugin,
+  //commonsPlugin,
+  new webpack.BannerPlugin('This file is created by eeve.'),
+  new webpack.NoErrorsPlugin(),
+  //new HtmlWebpackPlugin({
+  //  template: 'src/views/index.jade',
+  //  filename: '../index.html',
+  //  chunks: ['vendors', 'index'],
+  //  inject:'body'
+  //})
+]
+
 var config = {
   entry: './app/app.js',
   output: {
     path: path.resolve(__dirname, "dist"),
-    publicPath:'/js/',
-    filename: 'app.js'
+    publicPath:'/',
+    filename: 'js/app.js'
   },
-  plugins: [
-    definePlugin,
-    //providePlugin,
-    //commonsPlugin,
-    new webpack.BannerPlugin('This file is created by eeve.'),
-    new webpack.NoErrorsPlugin(),
-    //new HtmlWebpackPlugin({
-    //  template: 'src/views/index.jade',
-    //  filename: '../index.html',
-    //  chunks: ['vendors', 'index'],
-    //  inject:'body'
-    //})
-  ],
+  plugins: debug ?
+    defaultPlugins : [
+      // https://github.com/webpack/docs/wiki/optimization
+      new webpack.optimize.UglifyJsPlugin({
+        compress: {
+          warnings: false
+        }
+      }),
+      new webpack.optimize.OccurrenceOrderPlugin(),
+      new webpack.optimize.DedupePlugin()
+    ].concat(defaultPlugins),
   module:{
     loaders:assetsLoaders.concat([
       { test: /\.js$/, loader: 'babel' ,query: { presets: [ 'es2015' ] } },
@@ -71,7 +83,7 @@ var config = {
   devServer:{
     hot:true,
     proxy: {
-      //"*": "http://192.168.1.111:8083"
+      //"*": "http://0.0.0.0:8083"
     }
   }
 };
