@@ -17,3 +17,10 @@ npm run-script dev-gulp
 - Webpack 1.x
 - gulp 3.x
 - Jade
+
+# 生产构建
+
+```
+npm run-script prod
+# 构建好的文件在dist目录中
+```
